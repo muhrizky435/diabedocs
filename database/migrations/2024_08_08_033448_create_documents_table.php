@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('no_rekam_medis')->unique();
             $table->string('nama_pasien');
-            $table->date('tanggal_lahir');
-            $table->string('alamat');
+            $table->string('nama_petugas');
+            $table->date('tanggal_pinjam');
+            $table->date('tanggal_kembali')->nullable();
+            $table->enum('status', ['Dipinjam', 'Sudah Dikembalikan']);
             $table->timestamps();
         });
     }

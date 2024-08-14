@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Document extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'no_rekam_medis',
+        'nama_pasien',
+        'nama_petugas',
+        'tanggal_pinjam',
+        'tanggal_kembali',
+        'status',
+    ];
 }

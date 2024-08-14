@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('pengembalians', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('peminjaman_id');
-            $table->date('tanggal_pengembalian');
+            $table->string('no_rekam_medis');
+            $table->string('nama_pasien');
+            $table->string('nama_petugas');
+            $table->date('tanggal_pinjam');
+            $table->date('tanggal_kembali')->nullable(); // Nullable jika tidak wajib saat peminjaman
+            $table->string('status')->default('Dipinjamkan');
             $table->timestamps();
         });
     }

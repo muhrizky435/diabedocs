@@ -23,11 +23,6 @@ menuBar.addEventListener('click', function () {
 })
 
 
-
-
-
-
-
 const searchButton = document.querySelector('#content nav form .form-input button');
 const searchButtonIcon = document.querySelector('#content nav form .form-input button .bx');
 const searchForm = document.querySelector('#content nav form');
@@ -80,3 +75,51 @@ document.getElementById('hideSubtitle').addEventListener('click', function() {
     subtitle.style.display = subtitle.style.display === 'none' ? 'block' : 'none';
     this.innerHTML = subtitle.style.display === 'none' ? '<i class="bx bx-chevron-down"></i>' : '<i class="bx bx-chevron-up"></i>';
 });
+
+
+//modal edit dan delete
+document.addEventListener('DOMContentLoaded', function () {
+    var editModal = document.getElementById('editModal');
+    var deleteModal = document.getElementById('deleteModal');
+
+    editModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute('data-id');
+        var namaPasien = button.getAttribute('data-nama');
+        
+        var form = document.getElementById('editForm');
+        form.action = form.action.replace(':id', id);
+        document.getElementById('nama_pasien').value = namaPasien;
+    });
+
+    deleteModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget;
+        var id = button.getAttribute('data-id');
+
+        var form = document.getElementById('deleteForm');
+        form.action = form.action.replace(':id', id);
+    });
+});
+
+// Get the current URL path
+const currentPath = window.location.pathname;
+
+// Loop through each sidebar link
+allSideMenu.forEach(item => {
+    const li = item.parentElement;
+
+    // If the current path matches the link's href, add the 'active' class
+    if (item.getAttribute('href') === currentPath) {
+        li.classList.add('active');
+    } else {
+        li.classList.remove('active');
+    }
+
+    item.addEventListener('click', function () {
+        allSideMenu.forEach(i => {
+            i.parentElement.classList.remove('active');
+        })
+        li.classList.add('active');
+    })
+});
+
