@@ -30,7 +30,7 @@ class DokumenController extends Controller
             'tanggal_pinjam' => 'required|date',
         ]);
 
-        // Membuat instance baru dari model Peminjaman
+        // Membuat instance baru atau kolom dari model Peminjaman
         $peminjaman = new Peminjaman();
         $peminjaman->no_rekam_medis = $request->input('no_rekam_medis');
         $peminjaman->nama_pasien = $request->input('nama_pasien');
@@ -38,11 +38,11 @@ class DokumenController extends Controller
         $peminjaman->tanggal_pinjam = $request->input('tanggal_pinjam');
         $peminjaman->save();
 
-        // Redirect ke halaman dashboardAdmin dengan pesan sukses
+        // Redirect menuju ke halaman dashboardAdmin dengan pesan sukses
         return redirect()->route('dashboardAdmin')->with('success', 'Dokumen berhasil ditambahkan.');
     }
 
-    // Method untuk mengedit dokumen
+    // Method untuk mengedit dokumen peminjaman 
     public function editDokumen(Request $request)
     {
         $request->validate([
